@@ -1,0 +1,43 @@
+name: Prod - Build and Deploy to Cloud Run
+
+# Trigger the workflow on pushes to the main branch
+on:
+  push:
+    branches:
+      - main
+
+# Environment variables accessible to all the steps in the workflow
+env:
+  PROJECT_ID: single-nebula-318916
+  RUN_REGION: northamerica-northeast1
+  SERVICE_NAME: home-activities
+
+jobs:
+  # Define a job named "setup-build-deploy" that will use ubuntu to deploy and run the step of pipeline
+  setup-build-deploy:
+    name: Setup, Build, and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository using pre-built GitHub Action
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Step 2: Google authentication using pre-built GitHub Action  google-github-actions/auth
+      # You can use Workload Identity Federation or traditional Service Account Key JSON to authenticate the actions
+      # Using service account key json file as a GitHub secret
+      - name: Google Auth
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: "${{ secrets.GCP_SA_KEY }}"
+          project_id: ${{ env.PROJECT_ID }}
+
+      # Step 3: Deploy the Docker image to Cloud Run using pre-built GitHub Action
+      # build-args sets process.env variables with GitHub secret values
+      - name: Deploy to Cloud Run
+        id: deploy
+        uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          service: ${{ env.SERVICE_NAME }}
+          region: ${{ env.RUN_REGION }}
+          source: ./
