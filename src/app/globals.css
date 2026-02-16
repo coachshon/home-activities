@@ -54,3 +54,35 @@ body {
   opacity: 0.6;
   text-decoration: line-through;
 }
+
+/* FullCalendar mobile responsiveness */
+@media (max-width: 767px) {
+  .fc .fc-toolbar {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .fc .fc-toolbar-title {
+    font-size: 1.1rem;
+  }
+
+  .fc .fc-button {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .fc .fc-daygrid-day-number {
+    font-size: 0.75rem;
+    padding: 2px 4px;
+  }
+
+  .fc .fc-event {
+    font-size: 0.7rem;
+    padding: 1px 2px;
+  }
+
+  .fc .fc-col-header-cell-cushion {
+    font-size: 0.75rem;
+    padding: 4px 2px;
+  }
+}

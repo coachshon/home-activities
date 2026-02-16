@@ -23,7 +23,7 @@ export default function MemberList({ members, onEdit, onDelete }: MemberListProp
   return (
     <div className="bg-white rounded-lg border border-gray-200 divide-y divide-gray-200">
       {members.map(member => (
-        <div key={member.id} className="flex items-center justify-between px-5 py-4">
+        <div key={member.id} className="flex flex-col sm:flex-row sm:items-center sm:justify-between px-4 sm:px-5 py-4 gap-3">
           <div className="flex items-center gap-3">
             <div
               className="w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold text-sm"
@@ -39,7 +39,7 @@ export default function MemberList({ members, onEdit, onDelete }: MemberListProp
             </div>
             <Badge label={member.color} color={member.color} />
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 self-end sm:self-auto">
             <Button variant="ghost" size="sm" onClick={() => onEdit(member)}>
               Edit
             </Button>

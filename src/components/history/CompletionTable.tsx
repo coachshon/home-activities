@@ -24,23 +24,23 @@ export default function CompletionTable({
   }
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+    <div className="bg-white rounded-lg border border-gray-200 overflow-x-auto">
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>
-            <th className="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-3 sm:px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Activity
             </th>
-            <th className="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-3 sm:px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Date
             </th>
-            <th className="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-3 sm:px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Completed By
             </th>
-            <th className="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-3 sm:px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">
               Notes
             </th>
-            <th className="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-3 sm:px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Actions
             </th>
           </tr>
@@ -51,7 +51,7 @@ export default function CompletionTable({
             const member = members.find(m => m.id === completion.completedBy);
             return (
               <tr key={completion.id} className="hover:bg-gray-50">
-                <td className="px-5 py-3 text-sm">
+                <td className="px-3 sm:px-5 py-3 text-sm">
                   <div className="flex items-center gap-2">
                     {activity && (
                       <span
@@ -62,20 +62,20 @@ export default function CompletionTable({
                     {activity?.name || 'Deleted Activity'}
                   </div>
                 </td>
-                <td className="px-5 py-3 text-sm text-gray-600">
+                <td className="px-3 sm:px-5 py-3 text-sm text-gray-600">
                   {completion.date}
                 </td>
-                <td className="px-5 py-3 text-sm">
+                <td className="px-3 sm:px-5 py-3 text-sm">
                   {member ? (
                     <Badge label={member.name} color={member.color} />
                   ) : (
                     <span className="text-gray-400">Unknown</span>
                   )}
                 </td>
-                <td className="px-5 py-3 text-sm text-gray-600">
+                <td className="px-3 sm:px-5 py-3 text-sm text-gray-600 hidden sm:table-cell">
                   {completion.notes || '-'}
                 </td>
-                <td className="px-5 py-3 text-sm">
+                <td className="px-3 sm:px-5 py-3 text-sm">
                   <Button
                     variant="ghost"
                     size="sm"

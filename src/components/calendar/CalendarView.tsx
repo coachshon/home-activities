@@ -18,6 +18,15 @@ export default function CalendarView() {
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [selectedOccurrence, setSelectedOccurrence] = useState<ActivityOccurrence | null>(null);
   const currentRange = useRef<{ start: string; end: string } | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia('(max-width: 767px)');
+    setIsMobile(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mql.addEventListener('change', handler);
+    return () => mql.removeEventListener('change', handler);
+  }, []);
 
   const fetchEvents = useCallback(async (start: string, end: string) => {
     const res = await fetch(`/api/activities?start=${start}&end=${end}`);
@@ -92,18 +101,18 @@ export default function CalendarView() {
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
-        headerToolbar={{
-          left: 'prev,next today',
-          center: 'title',
-          right: 'dayGridMonth,timeGridWeek,timeGridDay',
-        }}
+        headerToolbar={
+          isMobile
+            ? { left: 'prev,next', center: 'title', right: '' }
+            : { left: 'prev,next today', center: 'title', right: 'dayGridMonth,timeGridWeek,timeGridDay' }
+        }
         selectable
         select={handleDateSelect}
         eventClick={handleEventClick}
         events={events}
         datesSet={handleDatesSet}
         height="auto"
-        dayMaxEvents={4}
+        dayMaxEvents={isMobile ? 2 : 4}
       />
       <ActivityModal
         open={modalOpen}

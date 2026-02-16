@@ -36,7 +36,7 @@ export default function HistoryFilters({
 
   return (
     <div className="bg-white rounded-lg border border-gray-200 px-5 py-4 mb-4">
-      <div className="flex flex-wrap items-end gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 items-end gap-4">
         <Select
           id="filter-member"
           label="Member"
