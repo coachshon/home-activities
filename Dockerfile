@@ -1,5 +1,5 @@
 # Specify the base image
-FROM node:20.2.0-alpine
+FROM node:20.11.1-alpine
 
 # Set the working directory
 WORKDIR /src/app
@@ -15,7 +15,7 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
-# Build the application
+# Build the applicationFROM node:20.11.1-alpine
 RUN npm run build
 
 # Start the application
