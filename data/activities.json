@@ -1,0 +1,14 @@
+[
+  {
+    "id": "8dabf6b8-e03c-4e16-9587-4fe8b22bd926",
+    "name": "Gym",
+    "description": "Make muscles",
+    "assigneeId": "a369b77f-c364-4132-a511-cdb4550ec85b",
+    "recurrence": "daily",
+    "startDate": "2026-02-16",
+    "endDate": null,
+    "color": "#3b82f6",
+    "createdAt": "2026-02-16T16:41:51.321Z",
+    "updatedAt": "2026-02-16T16:41:51.321Z"
+  }
+]
